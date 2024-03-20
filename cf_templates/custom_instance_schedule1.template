@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ServiceInstanceScheduleServiceTokenARN:
+    Type: String
+    Description: (Required) service token arn taken from InstanceScheduler outputs
+Metadata:
+  'AWS::CloudFormation::Designer': {}
+Resources:
+  CustomSchedule1:
+    Type: 'Custom::ServiceInstanceSchedule'
+    Properties:
+      ServiceToken: !Ref ServiceInstanceScheduleServiceTokenARN #do not edit this line
+      NoStackPrefix: 'True'
+      Name: 1530-1600-Thurs-Fri
+      Description: run from 15:30 to 16:00 Thurs and Fri
+      Timezone: America/New_York
+      Enforced: 'True'
+      Hibernate: 'False'
+      RetainRunning: 'True'
+      StopNewInstances: 'True'
+      UseMaintenanceWindow: 'False'
+      Periods:
+      - Description: run from 15:30 to 16:00 Thurs and Fri
+        BeginTime: '15:30'
+        EndTime: '16:00'
+        WeekDays: 'Thu-Fri'

@@ -1,2 +1,16 @@
-*.agdai
-MAlonzo/**
+# tf files
+.terraform
+tfplan*
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+# secrets - shhh
+ss_set_creds.sh
+dev_set_creds.sh
+
+# mac os files
+.DS_store
+
+sample-schedule-creation-cf.template
+
