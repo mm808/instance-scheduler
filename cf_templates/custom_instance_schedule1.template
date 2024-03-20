@@ -24,3 +24,22 @@ Resources:
         BeginTime: '15:30'
         EndTime: '16:00'
         WeekDays: 'Thu-Fri'
+
+  CustomSchedule2:
+    Type: 'Custom::ServiceInstanceSchedule'
+    Properties:
+      ServiceToken: !Ref ServiceInstanceScheduleServiceTokenARN #do not edit this line
+      NoStackPrefix: 'True'
+      Name: 21-00-weekends
+      Description: run from 9pm-midnight weekends
+      Timezone: America/New_York
+      Enforced: 'True'
+      Hibernate: 'False'
+      RetainRunning: 'True'
+      StopNewInstances: 'True'
+      UseMaintenanceWindow: 'False'
+      Periods:
+      - Description: run from 9pm to midnight Sat and Sun
+        BeginTime: '21:00'
+        EndTime: '00:00'
+        WeekDays: 'Sat-Sun'

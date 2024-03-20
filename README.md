@@ -11,12 +11,12 @@ It looks like each new schedule needs a different stack file. Editing within an 
 
 
 # stack to create custom schedule2
-resource "aws_cloudformation_stack" "custom_instance_schedule2" {
-  name          = "Custom-Instance-Schedule2"
-  template_body = file("cf_templates/custom_instance_schedule2.template")
+    resource "aws_cloudformation_stack" "custom_instance_schedule2" {
+      name          = "Custom-Instance-Schedule2"
+      template_body = file("cf_templates/custom_instance_schedule2.template")
 
-  parameters = {
-    ServiceInstanceScheduleServiceTokenARN = data.aws_cloudformation_stack.hub_instance_scheduler_stack.outputs["ServiceInstanceScheduleServiceToken"]
-  }
-  capabilities = ["CAPABILITY_IAM"]
-}
+      parameters = {
+        ServiceInstanceScheduleServiceTokenARN = data.aws_cloudformation_stack.hub_instance_scheduler_stack.outputs["ServiceInstanceScheduleServiceToken"]
+      }
+      capabilities = ["CAPABILITY_IAM"]
+    }
