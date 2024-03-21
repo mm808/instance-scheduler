@@ -1,5 +1,5 @@
 {
- "Description": "Mangione test instance-scheduler-on-aws",
+ "Description": "SharedServices instance-scheduler-on-aws",
  "AWSTemplateFormatVersion": "2010-09-09",
  "Metadata": {
   "AWS::CloudFormation::Interface": {
@@ -679,7 +679,7 @@
   },
   "UsingAWSOrganizations": {
    "Type": "String",
-   "Default": "No",
+   "Default": "Yes",
    "AllowedValues": [
     "Yes",
     "No"
@@ -688,12 +688,12 @@
   },
   "Principals": {
    "Type": "CommaDelimitedList",
-   "Default": "",
+   "Default": "o-xctuh7wugs",
    "Description": "(Required) If using AWS Organizations, provide the Organization ID. Eg. o-xxxxyyy. Else, provide a comma separated list of spoke account ids to schedule. Eg.: 1111111111, 2222222222 or {param: ssm-param-name}"
   },
   "Namespace": {
    "Type": "String",
-   "Default": "",
+   "Default": "mm808-sharedservices",
    "Description": "Provide unique identifier to differentiate between multiple solution deployments (No Spaces). Example: Dev"
   },
   "StartedTags": {

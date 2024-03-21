@@ -15,9 +15,9 @@ data "aws_cloudformation_stack" "hub_instance_scheduler_stack" {
 }
 
 # stack to create custom schedule1
-resource "aws_cloudformation_stack" "custom_instance_schedule1" {
-  name          = "Custom-Instance-Schedule1"
-  template_body = file("cf_templates/custom_instance_schedule1.template")
+resource "aws_cloudformation_stack" "custom_instance_schedules" {
+  name          = "Custom-Instance-Schedules"
+  template_body = file("cf_templates/custom_instance_schedules.template")
 
   parameters = {
     ServiceInstanceScheduleServiceTokenARN = data.aws_cloudformation_stack.hub_instance_scheduler_stack.outputs["ServiceInstanceScheduleServiceToken"]

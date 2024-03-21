@@ -12,5 +12,6 @@ dev_set_creds.sh
 # mac os files
 .DS_store
 
-sample-schedule-creation-cf.template
-
+sample-schedule-*
+*log.yml
+logs/*

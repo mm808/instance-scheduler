@@ -3,6 +3,7 @@ Parameters:
   ServiceInstanceScheduleServiceTokenARN:
     Type: String
     Description: (Required) service token arn taken from InstanceScheduler outputs
+    Default: "arn:aws:lambda:us-east-1:843515436184:function:Hub-Instance-Scheduler-InstanceSchedulerMain"
 Metadata:
   'AWS::CloudFormation::Designer': {}
 Resources:
@@ -11,8 +12,8 @@ Resources:
     Properties:
       ServiceToken: !Ref ServiceInstanceScheduleServiceTokenARN #do not edit this line
       NoStackPrefix: 'True'
-      Name: 1530-1600-Thurs-Fri
-      Description: run from 15:30 to 16:00 Thurs and Fri
+      Name: 1530-1730-Thurs-Fri
+      Description: run 1530 to 1730 Thurs and Fri
       Timezone: America/New_York
       Enforced: 'True'
       Hibernate: 'False'
@@ -20,26 +21,36 @@ Resources:
       StopNewInstances: 'True'
       UseMaintenanceWindow: 'False'
       Periods:
-      - Description: run from 15:30 to 16:00 Thurs and Fri
+      - Description: run from 15:30 to 17:30 Thurs and Fri
         BeginTime: '15:30'
-        EndTime: '16:00'
+        EndTime: '17:30'
         WeekDays: 'Thu-Fri'
-
+        
   CustomSchedule2:
     Type: 'Custom::ServiceInstanceSchedule'
     Properties:
       ServiceToken: !Ref ServiceInstanceScheduleServiceTokenARN #do not edit this line
+      Name: 8pm to 11pm weekends
       NoStackPrefix: 'True'
-      Name: 21-00-weekends
-      Description: run from 9pm-midnight weekends
+      Description: run from 8pm to 11pm weekends
       Timezone: America/New_York
-      Enforced: 'True'
-      Hibernate: 'False'
-      RetainRunning: 'True'
-      StopNewInstances: 'True'
-      UseMaintenanceWindow: 'False'
       Periods:
-      - Description: run from 9pm to midnight Sat and Sun
-        BeginTime: '21:00'
-        EndTime: '00:00'
+      - Description: run from 8pm to 11pm weekends
+        BeginTime: '20:00'
+        EndTime: '23:00' 
         WeekDays: 'Sat-Sun'
+
+
+  CustomSchedule3:
+    Type: 'Custom::ServiceInstanceSchedule'
+    Properties:
+      ServiceToken: !Ref ServiceInstanceScheduleServiceTokenARN #do not edit this line
+      Name: 8am to 6pm weekdays Central
+      NoStackPrefix: 'True'
+      Description: run 8am to 6pm weekdays Central
+      Timezone: America/Chicago
+      Periods:
+      - Description: run 8am to 6pm weekdays Central
+        BeginTime: '08:00'
+        EndTime: '18:00'
+        WeekDays: 'mon-fri'
